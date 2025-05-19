@@ -23,7 +23,7 @@ export const metadata = {
 };
 
 import Navbar from '../../components/navbar/navbar';
-import Footer from '../../components/footer/Footer';
+import Footer from '../../components/Footer/Footer';
 
 export default function RootLayout({ children }) {
   return (

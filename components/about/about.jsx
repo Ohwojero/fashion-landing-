@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import styles from './About.module.scss';
+import styles from './about.module.scss';
 
 const About = ({
   title = "Meet The Designer",
