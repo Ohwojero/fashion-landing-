@@ -1,0 +1,143 @@
+@import '../../src/app/styles/variables.scss';
+
+.portfolioSection {
+  background-color: lighten($background-color, 2%); // Slightly different bg for visual separation
+  // or use $background-color if you prefer seamless
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); // 1 column on smallest screens
+  gap: 20px; // Gap between items
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr); // 2 columns on small screens
+    gap: 25px;
+  }
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr); // 3 columns on large screens
+    gap: 30px;
+  }
+  // Optional: 4 columns on extra large screens
+  // @media (min-width: $breakpoint-xl) {
+  //   grid-template-columns: repeat(4, 1fr);
+  // }
+}
+
+.galleryItem {
+  position: relative;
+  overflow: hidden; // Crucial for image zoom and overlay effects
+  border-radius: 8px; // Soft rounded corners
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &:hover {
+    transform: translateY(-8px); // Slight lift
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+
+    .galleryImage {
+      transform: scale(1.05); // Zoom image on hover
+    }
+
+    .itemOverlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  // Aspect ratio using padding-bottom trick if not using next/image layout="responsive" with w/h
+  // padding-bottom: 140%; // For a portrait aspect ratio (e.g., 5:7 -> 7/5*100 = 140%)
+  // For next/image with layout="responsive", width and height props define aspect ratio
+  background-color: #eee; // Placeholder bg while image loads
+  border-radius: 8px; // Match parent
+  overflow: hidden; // Ensure image zoom stays within wrapper
+}
+
+.galleryImage {
+  display: block;
+  width: 100%;
+  height: 100%; // Fill the wrapper if using object-fit
+  object-fit: cover; // Ensure image covers the area without distortion
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 8px; // Match parent
+}
+
+.itemOverlay {
+  position: absolute;
+  bottom: 0; // Start from bottom
+  left: 0;
+  width: 100%;
+  height: auto; // Adjust height based on content
+  min-height: 40%; // Ensure enough space for title/desc
+  background: linear-gradient(to top, rgba($dark-background-section, 0.95) 0%, rgba($dark-background-section, 0.8) 60%, transparent 100%);
+  color: $light-text-color;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; // Align content to bottom
+  align-items: flex-start; // Align text to left
+  opacity: 0; // Hidden by default
+  transform: translateY(20px); // Start slightly offset for slide-up effect
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.overlayContent {
+  // Container for text if needed
+}
+
+.itemTitle {
+  font-family: $font-headings;
+  font-size: 1.3rem;
+  color: $light-text-color;
+  margin-bottom: 5px;
+  font-weight: 600;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.5rem;
+  }
+}
+
+.itemDescription {
+  font-family: $font-body;
+  font-size: 0.85rem;
+  color: lighten($light-text-color, 20%);
+  margin-bottom: 15px;
+  line-height: 1.5;
+  // Optional: Clamp to 2 lines with ellipsis if description is long
+  // display: -webkit-box;
+  // -webkit-line-clamp: 2;
+  // -webkit-box-orient: vertical;
+  // overflow: hidden;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 0.9rem;
+  }
+}
+
+.viewButton { // Basic styling for a view button (if we add modal later)
+  background-color: $accent-color;
+  color: $text-color;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+
+  svg {
+    margin-right: 5px;
+  }
+
+  &:hover {
+    background-color: darken($accent-color, 10%);
+  }
+}

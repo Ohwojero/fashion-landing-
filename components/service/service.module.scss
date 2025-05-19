@@ -1,0 +1,90 @@
+@import '../../src/app/styles/variables.scss';
+
+.servicesSection {
+  background-color: $background-color; // Or a slightly different shade if desired
+  // padding-bottom: $section-padding + 20px; // Extra padding if needed
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 30px;
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+  }
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr); // Display 4 services in a row on larger screens
+                                          // Adjust to 2 or 3 if you have fewer services or want larger cards
+    gap: 30px;
+  }
+}
+
+.serviceItem {
+  background-color: #fff; // White cards on the section background
+  padding: 30px 25px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(darken($primary-color, 30%), 0.07);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  border: 1px solid $secondary-color;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 35px rgba(darken($primary-color, 30%), 0.12);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    padding: 40px 30px;
+  }
+}
+
+.iconWrapper {
+  margin-bottom: 20px;
+  display: inline-block; // To center the wrapper
+}
+
+.serviceIcon {
+  font-size: 2.8rem; // Adjust size for emoji or icon library
+  color: $accent-color;
+  background-color: lighten($accent-color, 30%); // Soft background for icon
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto; // Center the wrapper
+  margin-right: auto; // Center the wrapper
+  box-shadow: 0 4px 10px rgba($accent-color, 0.2);
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 3rem;
+    width: 90px;
+    height: 90px;
+  }
+}
+
+.serviceTitle {
+  font-family: $font-headings;
+  font-size: 1.4rem;
+  color: $primary-color;
+  margin-bottom: 10px;
+  font-weight: 600;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.6rem;
+  }
+}
+
+.serviceDescription {
+  font-family: $font-body;
+  font-size: 0.9rem;
+  color: lighten($text-color, 20%);
+  line-height: 1.6;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 0.95rem;
+  }
+}

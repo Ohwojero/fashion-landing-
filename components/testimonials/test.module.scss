@@ -1,0 +1,112 @@
+@import '../../src/app/styles/variables.scss';
+
+.testimonialsSection {
+  background-color: $dark-background-section;
+  color: $light-text-color;
+  padding-top: $section-padding; // Ensure consistent top/bottom padding
+  padding-bottom: $section-padding + 20px; // Little extra at bottom
+}
+
+// Specific style for section title on dark background
+.sectionTitleWhite {
+  color: $light-text-color !important; // Override default primary color for title
+  &::after {
+    background-color: $accent-color !important; // Keep accent for underline
+  }
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: 1fr; // Single column on smallest screens
+  gap: 30px;
+
+  @media (min-width: $breakpoint-sm) {
+    // For 2 testimonials, this will show 2 columns.
+    // For 3 testimonials, it might show 2 then 1, or adjust minmax for 3.
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    // Explicitly 3 columns if you typically have 3 testimonials to show
+    // If you usually have 2, set to repeat(2, 1fr)
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+}
+
+.testimonialItem {
+  background-color: lighten($dark-background-section, 8%); // Card slightly lighter than section BG
+  padding: 35px;
+  border-radius: 12px; // Slightly larger radius
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Center content vertically
+  min-height: 280px; // Good min height for content
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.quoteIcon {
+  font-size: 2rem; // Slightly smaller, more subtle icons
+  color: $accent-color;
+  opacity: 0.5; // More subtle
+  position: absolute;
+}
+
+.quoteIconLeft {
+  top: 20px;
+  left: 25px;
+}
+
+.quoteIconRight {
+  bottom: 20px;
+  right: 25px;
+}
+
+.quoteText {
+  font-family: $font-body;
+  font-size: 1rem; // Ensure readability
+  line-height: 1.75;
+  color: lighten($light-text-color, 10%);
+  margin-bottom: 25px;
+  font-style: italic;
+  text-align: center; // Center align quote text
+  padding: 0 10px; // Ensure text doesn't touch quote icons if they were inline
+  flex-grow: 1; // Helps with vertical centering in flex column
+  display: flex; // To use align-items
+  align-items: center; // Vertically center the text itself if it's short
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.05rem;
+    padding: 0 20px;
+  }
+}
+
+.authorInfo {
+  text-align: center; // Center author info
+  margin-top: auto; // Pushes to bottom if quote text is short
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding-top: 15px;
+  border-top: 1px solid rgba($light-text-color, 0.15); // Subtle separator
+  width: 80%; // Don't let it span full width
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.authorName {
+  color: $light-text-color;
+  font-family: $font-headings;
+  font-weight: 600;
+}
+
+.authorLocation {
+  color: darken($light-text-color, 30%);
+  font-style: normal; // Keep location non-italic for contrast with name
+}

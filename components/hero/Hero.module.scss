@@ -1,0 +1,121 @@
+@import '../../src/app/styles/variables.scss';
+
+.hero {
+  position: relative;
+  height: 100vh; // Full viewport height
+  min-height: 650px; // Ensure enough height on smaller viewports or when content is short
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $light-text-color;
+  text-align: center;
+  overflow: hidden; // Important to contain the image and overlay
+}
+
+.heroImageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  .imageInnerWrapper { // For the subtle zoom animation
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // Gradient overlay for better text readability and depth
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 0.75) 100%);
+  z-index: 2;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  max-width: 800px; // Control max width of text content
+  padding: 20px; // Ensure padding on small screens
+}
+
+.title {
+  font-family: $font-headings;
+  font-size: 2.8rem;
+  color: $light-text-color;
+  font-weight: 700; // Bold for impact
+  line-height: 1.2;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); // Enhanced shadow for readability
+  margin-bottom: 1rem;
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: 3.5rem;
+  }
+  @media (min-width: $breakpoint-md) {
+    font-size: 4.2rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (min-width: $breakpoint-lg) {
+    font-size: 5rem;
+  }
+}
+
+.subtitle {
+  font-family: $font-body;
+  font-size: 1.1rem;
+  color: lighten($light-text-color, 15%); // Slightly lighter for hierarchy
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.ctaButton {
+  display: inline-flex; // For aligning icon and text
+  align-items: center;
+  background-color: $accent-color;
+  color: $text-color; // Using dark text on light accent for contrast
+  padding: 0.9rem 2.2rem;
+  border-radius: 50px; // Pill shape for modern feel
+  font-family: $font-body;
+  font-weight: 600; // Bold CTA
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  box-shadow: 0 5px 20px rgba(darken($accent-color, 20%), 0.35);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+
+  .ctaIcon {
+    margin-left: 10px;
+    font-size: 1.2em; // Make icon slightly larger
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background-color: darken($accent-color, 8%);
+    transform: translateY(-3px) scale(1.02); // Lift and slightly enlarge
+    box-shadow: 0 8px 25px rgba(darken($accent-color, 15%), 0.5);
+    color: $text-color;
+
+    .ctaIcon {
+      transform: translateX(5px); // Move icon slightly on hover
+    }
+  }
+
+  @media (min-width: $breakpoint-md) {
+    padding: 1.1rem 2.8rem;
+    font-size: 1.05rem;
+  }
+}

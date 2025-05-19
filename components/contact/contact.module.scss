@@ -1,0 +1,167 @@
+@import '../../src/app/styles/variables.scss';
+
+.contactSection {
+  background-color: lighten($background-color, 1.5%); // Slightly different bg for separation
+  padding-bottom: $section-padding + 30px; // Extra padding at bottom
+}
+
+.subtitle {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 40px auto;
+  font-size: 1.05rem;
+  color: lighten($text-color, 15%);
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.1rem;
+    margin-bottom: 60px;
+  }
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: 1fr 1.2fr; // Info column slightly smaller than form column
+    gap: 50px;
+  }
+  @media (min-width: $breakpoint-lg) {
+    gap: 70px;
+  }
+}
+
+.columnTitle {
+  font-family: $font-headings;
+  font-size: 1.6rem;
+  color: $primary-color;
+  margin-bottom: 25px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 8px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: $accent-color;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+}
+
+.contactInfoColumn {
+  // Styles specific to this column if needed
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: $text-color;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $accent-color;
+    .contactIcon {
+      color: $accent-color;
+    }
+  }
+
+  .contactIcon {
+    font-size: 1.5rem; // Icon size
+    color: $primary-color;
+    margin-right: 15px;
+    min-width: 25px; // Ensure consistent spacing
+    transition: color 0.3s ease;
+  }
+
+  span {
+    line-height: 1.6;
+  }
+}
+
+.contactFormColumn {
+  // Styles specific to this column if needed
+}
+
+.contactForm {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(darken($primary-color, 30%), 0.08);
+
+  @media (min-width: $breakpoint-md) {
+    padding: 40px;
+  }
+}
+
+.formGroup {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    font-family: $font-body;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: lighten($text-color, 10%);
+    margin-bottom: 8px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid darken($background-color, 10%);
+    border-radius: 6px;
+    font-family: $font-body;
+    font-size: 0.95rem;
+    color: $text-color;
+    background-color: lighten($background-color, 3%);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $accent-color;
+      box-shadow: 0 0 0 2px rgba($accent-color, 0.2);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+.submitButton {
+  display: inline-block;
+  background-color: $accent-color;
+  color: $text-color; // Dark text on accent for contrast
+  padding: 0.8rem 2.2rem;
+  border: none;
+  border-radius: 30px;
+  font-family: $font-body;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(darken($accent-color, 10%), 0.3);
+
+  &:hover {
+    background-color: darken($accent-color, 8%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(darken($accent-color, 10%), 0.4);
+  }
+}
